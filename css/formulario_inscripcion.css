@@ -1,0 +1,7 @@
+.cerrado{
+    display: none;
+}
+
+.abierto{
+    display: block;
+}
