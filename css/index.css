@@ -8,7 +8,7 @@
 
 body{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: var(--color_primario);
     font-family: Arial, Helvetica, sans-serif;
     position: relative;
@@ -23,11 +23,11 @@ main{
 
 #menu{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: var(--color_menu);
 }
 
-#menu li{
+#menu ul{
     list-style: none;
 }
 
@@ -37,21 +37,19 @@ main{
 }
 
 #menu_opciones{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
 
 .opciones_menu{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
     font-family: 'Times New Roman', Times, serif;
-    font-size: medium;
     text-transform: uppercase;
     font-weight: 700;
+    gap: 1rem;
 }
 
 #cuerpo{
@@ -104,3 +102,24 @@ main{
     text-transform: uppercase;
 }
 
+
+@media (max-width:600px) {  
+    #menu{
+        width: 100%;
+        height: 100vh;
+    }
+
+    .opciones_cabecera{
+        padding: 1rem;
+    }
+
+
+    
+    .cabecera::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+
+    .cabecera::-webkit-scrollbar:horizontal {
+        width:10px;
+    }
+}

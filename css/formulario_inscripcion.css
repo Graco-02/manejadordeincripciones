@@ -1,7 +1,77 @@
 .cerrado{
     display: none;
+    transition: 1.5s;
 }
 
 .abierto{
+    transition: 1.5s;
     display: block;
+}
+
+
+#formulario_incripcion{
+    position: absolute;
+    top: 50;
+    bottom: 50;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 75%;
+    background-color: rgb(253, 255, 255);
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: 1.5s;
+}
+
+#formulario_inscripcio_cuerpo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.formulario_inscripcion_formulario{
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.formulario_inscripcion_formulario_fielset{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+
+}
+
+.boton_formulario{
+    cursor: pointer;
+    width: 100%;
+    background-color: blue;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+}
+
+.boton_formulario:hover{
+    background-color: aqua;
+    transition: 1s;
+}
+
+@media (max-width:600px) {  
+    .formulario_inscripcion_formulario h1{
+        font-size: 1.5rem;
+    }
+
+    #menu{
+        width: 100%;
+        height: 100vh;
+    }
+
+  .opciones_menu span{
+    display: none;
+  }
 }
