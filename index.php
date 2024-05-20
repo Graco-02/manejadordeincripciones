@@ -30,11 +30,12 @@
 
     <section id="cuerpo">
         <div id="cabecera" class="cabecera">
-            <div id="cabecera_1" class="opciones_cabecera">
+            <div id="cabecera_1" class="opciones_cabecera" onclick="alert('seleccionado cantidad inscritos');">
                 <img src="imagenes/usuario.png" alt="" srcset="">
                 <div class="cabecera_div">
                     <span class="cabecera_span_label">inscritos</span>
                     <span id="cabecera_1_span_label_cantidad" class="cabecera_1_span_label">0</span>
+                    <script>get_total_inscritos();</script>
                 </div>
             </div>
 
@@ -58,7 +59,7 @@
 
     <section id="formulario_incripcion" class="cerrado">
           <div id="formulario_inscripcio_cuerpo">
-             <form action="" method="" class="formulario_inscripcion_formulario">
+             <form action="javascript:  set_agregar();"  class="formulario_inscripcion_formulario">
                 <h1>formulario de inscripcion</h1>
 
                 <div>
@@ -81,6 +82,12 @@
                       <div class="formulario_inscripcion_formulario_fielset">
                           <label for="fecha_nacimiento">fecha de nacimiento</label>
                           <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                      </div>  
+
+                      <br>
+                      <div class="formulario_inscripcion_formulario_fielset">
+                          <label for="cuota">cuota</label>
+                          <input type="number" name="cuota" id="cuota" required>
                       </div>  
                       <br>  <br>
                       <button id="boton_formulario_inscripcion_envio" class="boton_formulario">enviar</button>

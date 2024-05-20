@@ -16,7 +16,8 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 75%;
+    width: 60%;
+    height: 60%;
     background-color: rgb(253, 255, 255);
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -63,7 +64,19 @@
 
 @media (max-width:600px) {  
     .formulario_inscripcion_formulario h1{
-        font-size: 1.5rem;
+        font-size: 1rem;
+    }
+    .formulario_inscripcion_formulario label{
+        font-size: 0.5rem;
+    }
+
+    .boton_formulario{
+        font-size: 0.5rem;
+    }
+
+    #formulario_incripcion{
+        height: 60%;
+        width: 75%;
     }
 
     #menu{
