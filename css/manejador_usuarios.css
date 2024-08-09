@@ -1,0 +1,42 @@
+:root{
+    --color_primario:rgb(218, 215, 244);
+    --color_menu:rgb(100, 84, 242);
+    --color_cabecera_1:rgb(17, 177, 236);
+    --color_cabecera_2:rgb(6, 186, 78);
+    --color_cabecera_3:rgb(155, 174, 13);
+}
+
+body{
+    position: relative;
+    background-color:var(--color_primario);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+
+.formulario{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.formulario input,textarea{ 
+    text-align: center;
+    width: 100%;
+    margin: 0.2rem;
+}
+
+#seccion_nuevo_usuario,#seccion_listado_usuario{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+#seccion_listado_usuario{
+    margin-right: 1rem;
+}
