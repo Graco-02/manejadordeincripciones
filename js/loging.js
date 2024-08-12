@@ -11,6 +11,7 @@ function get_validar_acceso(){
               console.log(respuesta);
               if(respuesta=="CORRECTO"){
                 alert("ACCESO ACEPTADO");
+                location.href="inscripciones/manejador_clientes.php";
               }else{
                   alert(respuesta);
               }

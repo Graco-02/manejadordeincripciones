@@ -22,13 +22,14 @@ function set_validar_logging($user_name,$user_clave){
             $validacion=FALSE; 
             die("Connection failed: " . $conn->connect_error);
         }else{
-            $sql = "SELECT  username,clave FROM usuarios where username='$user_name'"; 
+            $sql = "SELECT  id,username,clave FROM usuarios where username='$user_name'"; 
             $result = $conn->query($sql);
             
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     if($hash_clave == $row["clave"] || $row["clave"] == $user_clave){
                         $_SESSION['usuario_logeado'] = $row["username"];
+                        $_SESSION['usuario_logeado_id'] = $row["id"];
                         echo "CORRECTO";
                     } else {
                         $validacion=FALSE; 

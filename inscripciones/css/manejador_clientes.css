@@ -1,0 +1,111 @@
+:root{
+    --color_primario:rgb(218, 215, 244);
+    --color_menu:rgb(100, 84, 242);
+    --color_cabecera_1:rgb(17, 177, 236);
+    --color_cabecera_2:rgb(6, 186, 78);
+    --color_cabecera_3:rgb(155, 174, 13);
+}
+
+body{
+    position: relative;
+    background-color:var(--color_primario);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.formulario input,textarea{ 
+    text-align: center;
+    width: 90%;
+    margin: 0.2rem;
+}
+
+#seccion_nuevo_usuario,#seccion_listado_usuario{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+#seccion_listado_usuario{
+    margin-right: 1rem;
+}
+
+#lista_usuarios tr{
+    width: 10%;
+}
+
+.form_content{
+    width: 90%;
+    font-size: 2rem;
+}
+
+#contadores{
+    background-color: white;
+    padding: 5rem;
+}
+
+
+.flex_colum{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+}
+
+.contadores_content{
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    gap: 1rem;
+}
+
+.contendor_contador{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.contendor_contador_1{
+    background-color: aqua;
+    padding: 30%;
+}
+
+.contendor_contador_2{
+    background-color: rgb(26, 203, 6);
+    padding: 30%;
+}
+
+.contendor_contador_3{
+    background-color: rgb(94, 13, 201);
+    padding: 30%;
+}
+
+.contendor_contador:hover{
+    box-shadow: 5px 5px #0c0c0c;
+    cursor: pointer;
+    font-size:xx-large;
+    background-size: cover;
+}
+
+@media (max-width:1020px) {
+    main{
+        display: flex;
+        flex-direction: column;
+    }    
+
+    #contadores{
+        display: none;
+    }
+ }
