@@ -1,6 +1,6 @@
 var id_usuario_seleccionado=0;
 var id_persona_seleccionado=0;
-var limite_paginacion=5;
+var limite_paginacion=20;
 var index_ultimo_registro=0;
 
 function completar_cedula(){
@@ -157,6 +157,7 @@ function set_usuario_from_list(txt_nombre,txt_apellido,txt_identificacion,txt_di
   txt_user_caja.value =        txt_user;   
   txt_clave_caja.value =    txt_clave;
 
+  index_ultimo_registro=0;
   set_listado_filtrado(0);
 
 }
@@ -213,6 +214,7 @@ function set_modificar_usuario(id_usuario,id_persona,){
       ,function(respuesta){
           try {
             console.log(respuesta);
+            index_ultimo_registro=0;
             set_listado_filtrado(0);
             alert("MODIFICADO");
           } catch (error) {

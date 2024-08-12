@@ -51,9 +51,9 @@
                     <tr>
                         
                         <td></td>
-                        <td><button onclick="index_ultimo_registro-=limite_paginacion; set_listado_filtrado(0);"><<</button></td>
+                        <td><button class="btn btn-primary" onclick="index_ultimo_registro-=limite_paginacion; set_listado_filtrado(0);"><<</button></td>
                         <td></td>
-                        <td><button onclick="index_ultimo_registro+=limite_paginacion; set_listado_filtrado(0);">>></button></td>
+                        <td><button class="btn btn-primary" onclick="index_ultimo_registro+=limite_paginacion; set_listado_filtrado(0);">>></button></td>
                         <td></td>
                         
                     </tr>

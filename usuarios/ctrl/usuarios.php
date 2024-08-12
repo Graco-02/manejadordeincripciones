@@ -59,7 +59,8 @@ function set_insertar_persona($txt_nombre, $txt_apellido , $txt_identificacion,$
    
     if ($conn->query($sql) == TRUE) {
       $id=$conn->insert_id;		
-      set_insertar_usuario($id,$txt_user,$txt_clave);
+      $hash_clave = hash('sha256', $txt_clave);
+      set_insertar_usuario($id,$txt_user,$hash_clave);
     }else{
       echo 'AGREGADO INCORRECTO';
     }
@@ -196,9 +197,10 @@ function set_update_usuario($id_usuario,$id_persona,$txt_nombre, $txt_apellido ,
           " WHERE id = ".$id_persona;
    
     if ($conn->query($sql) == TRUE) {
+        $hash_clave = hash('sha256', $txt_clave);
         $sql="UPDATE  usuarios 
         SET username="."'".$txt_user."'".",".
-        "clave="."'".$txt_clave."'".
+        "clave="."'".$hash_clave."'".
         " WHERE id = ".$id_usuario;
 
         if ($conn->query($sql) == TRUE) {
