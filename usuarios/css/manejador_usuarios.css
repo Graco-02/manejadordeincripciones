@@ -40,3 +40,7 @@ main{
 #seccion_listado_usuario{
     margin-right: 1rem;
 }
+
+#lista_usuarios tr{
+    width: 10%;
+}
