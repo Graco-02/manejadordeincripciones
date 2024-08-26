@@ -1,3 +1,7 @@
+<?php 
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +13,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/manejador_clientes.css">
-    <script src="js/manejador_usuarios.js"></script> 
+    <script src="js/manejador_clientes.js"></script> 
+    <script>
+         id_usuario_logueado = <?php printf($_SESSION['usuario_logeado_id'])?>;
+    </script>
 </head>
 <body>
     <main>
@@ -25,32 +32,22 @@
                 <textarea name="txt_direccion" id="txt_direccion" maxlength="100" class="form-control form_content"></textarea>
                 <label for="txt_feccorte">fecha de corte</label>
                 <input type="date" name="txt_feccorte" id="txt_feccorte"  class="form-control form_content" required>
-                <label for="txt_cuota">fecha de corte</label>  
+                <label for="txt_cuota">monto</label>  
                 <input type="number" name="txt_cuota" id="txt_cuota" class="form-control form_content" required> 
                 
                 <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content">
             </form>
-            <div id="contadores" class="flex_colum bg-white shadow-lg  rounded">
-                <section class="contadores_content">
-                    <div class="contendor_contador contendor_contador_1" onclick="alert('');">
-                        <span>INSCRIPTOS</span>
-                        <p id="cont_inscriptos">0</p>
-                    </div>
-                    <div class="contendor_contador contendor_contador_2" onclick="alert('');">
-                       <span>VENCIDOS</span>
-                       <p id="cont_nopagos">0</p>
-                    </div>
-                    <div class="contendor_contador contendor_contador_3" onclick="alert('');">
-                        <span>AL DIA</span>
-                        <p id="cont_pagos">0</p>
-                    </div>
-                </section>
-                
-            </div>
         </section>
 
         <section id="seccion_listado_usuario">
-             <table class="table  table-hover">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                 <input type="text" class="form-control" placeholder="identificacion" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+
+            <div class="grid_2_rows">
+             <table id="listado" class="table  table-hover">
                 <thead>
                   <tr>
                     <th scope="col" hidden>#</th>
@@ -70,14 +67,31 @@
                     <tr>
                         
                         <td></td>
-                        <td><button class="btn btn-primary" onclick="index_ultimo_registro-=limite_paginacion; set_listado_filtrado(0);"><<</button></td>
+                        <td><button class="btn btn-primary" onclick="set_paginar_atraz();"><<</button></td>
                         <td></td>
-                        <td><button class="btn btn-primary" onclick="index_ultimo_registro+=limite_paginacion; set_listado_filtrado(0);">>></button></td>
+                        <td><button class="btn btn-primary" onclick="set_paginar_adelante();">>></button></td>
                         <td></td>
                         
                     </tr>
                 </tfoot>
              </table>
+             <div id="contadores" class="bg-white shadow-lg  rounded">
+                <section class="contadores_content">
+                    <div class="contendor_contador contendor_contador_1" onclick="alert('');">
+                        <span>INSCRIPTOS</span>
+                        <p id="cont_inscriptos">0</p>
+                    </div>
+                    <div class="contendor_contador contendor_contador_2" onclick="alert('');">
+                       <span>VENCIDOS</span>
+                       <p id="cont_nopagos">0</p>
+                    </div>
+                    <div class="contendor_contador contendor_contador_3" onclick="alert('');">
+                        <span>AL DIA</span>
+                        <p id="cont_pagos">0</p>
+                    </div>
+                </section>
+            </div>
+            </div>
         </section>
     </main>
 </body>

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if(count($_POST)>0){
     include_once("conecxion.php");
 

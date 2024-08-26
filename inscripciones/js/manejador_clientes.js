@@ -1,7 +1,8 @@
 var id_usuario_seleccionado=0;
 var id_persona_seleccionado=0;
-var limite_paginacion=20;
+var limite_paginacion=5;
 var index_ultimo_registro=0;
+var id_usuario_logueado;
 
 function completar_cedula(){
     var cedula = document.getElementById("txt_identificacion")
@@ -12,48 +13,9 @@ function completar_cedula(){
     }
 }
 
-function set_agregar(){
-    var txt_nombre          = document.getElementById('txt_nombre').value;
-    var txt_apellido        = document.getElementById('txt_apellido').value;
-    var txt_identificacion  = document.getElementById('txt_identificacion').value;
-    var txt_direccion       = document.getElementById('txt_direccion').value;
-    var txt_user            = document.getElementById('txt_user').value;
-    var txt_clave           = document.getElementById('txt_clave').value;
-  
-    if(id_usuario_seleccionado==0 && id_persona_seleccionado==0){
-         var accion = 1;//opcion para seleccionar los datos del equipo
-         $.post("ctrl/usuarios.php"
-         ,{"txt_nombre":txt_nombre 
-         ,"txt_apellido":txt_apellido 
-         ,"txt_identificacion":txt_identificacion 
-         ,"txt_direccion":txt_direccion 
-         ,"txt_user":txt_user 
-         ,"txt_clave":txt_clave 
-         ,"accion":accion 
-         }
-         ,function(respuesta){
-           if(respuesta != 'AGREGADO CORRECTO'){
-             alert('ERROR AGREGANDO  => '+respuesta);
-           }else{
-             alert('AGREGADO => '+respuesta);
-             set_listado_filtrado(0);
-           }
-         });
-    }else{
-      set_modificar_usuario(id_usuario_seleccionado,id_persona_seleccionado);
-    }
-
-    id_usuario_seleccionado=0;
-    id_persona_seleccionado=0;
-
-    document.getElementById('txt_nombre').value ="";
-    document.getElementById('txt_apellido').value="";
-    document.getElementById('txt_identificacion').value="";
-    document.getElementById('txt_direccion').value="";
-    document.getElementById('txt_user').value="";
-    document.getElementById('txt_clave').value="";
-
-  }
+function set_agregar(id_usuario){
+  alert();
+}
 
 
   function set_agregar_fila(nombre,apellido,identificacion,usuario,id){
@@ -88,8 +50,10 @@ function set_agregar(){
 function set_listado_filtrado(id){
   var accion = 2;//opcion para seleccionar los datos del equipo
   var count_mostrados=0;
-    $.post("ctrl/usuarios.php"
+    $.post("ctrl/clientes.php"
       ,{"id":id 
+        ,"limite":limite_paginacion
+        ,"cursor":index_ultimo_registro
       ,"accion":accion 
       }
       ,function(respuesta){
@@ -99,17 +63,20 @@ function set_listado_filtrado(id){
           try {
             var json = $.parseJSON(respuesta);
             //console.log(json);
-            for(i=0;i<json.length;i++){
-             // console.log(json[i]);  
-              if(i>=index_ultimo_registro && count_mostrados<limite_paginacion){
-                set_agregar_fila(json[i][1],json[i][2],json[i][3],json[i][4],json[i][0]);
-                index_ultimo_registro=i;
-                count_mostrados++;
-              }            
+            if(json.length>0){
+              for(i=0;i<json.length;i++){
+                 set_agregar_fila(json[i][1],json[i][2],json[i][3],json[i][4],json[i][0]);       
+              }
             }
           } catch (error) {
-            console.log(error);
-            console.log(respuesta);
+              var tableRow = document.getElementById("lista_usuarios");
+              var fila = document.createElement("tr");
+              var celda0 = document.createElement("td");
+              celda0.innerHTML = "SIN DATOS PARA MOSTRAR";
+              fila.appendChild(celda0);
+              tableRow.appendChild(fila);
+              console.log(error);
+              console.log(respuesta);
           }
       }); 
 }
@@ -117,7 +84,7 @@ function set_listado_filtrado(id){
 
 function get_usuario(id){
   var accion = 3;//opcion para seleccionar los datos del equipo
-    $.post("ctrl/usuarios.php"
+    $.post("ctrl/clientes.php"
       ,{"id":id 
       ,"accion":accion 
       }
@@ -165,7 +132,7 @@ function set_usuario_from_list(txt_nombre,txt_apellido,txt_identificacion,txt_di
 
 function get_eliminar_usuario(id_usuario,id_persona){
   var accion = 4;//opcion para seleccionar los datos del equipo
-    $.post("ctrl/usuarios.php"
+    $.post("ctrl/clientes.php"
       ,{"id_usuario":id_usuario 
       ,"id_persona":id_persona 
       ,"accion":accion 
@@ -200,7 +167,7 @@ function set_modificar_usuario(id_usuario,id_persona,){
   var txt_clave           = document.getElementById('txt_clave').value;
 
   var accion = 5;//opcion para seleccionar los datos del equipo
-    $.post("ctrl/usuarios.php"
+    $.post("ctrl/clientes.php"
       ,{"id_usuario":id_usuario 
       ,"id_persona":id_persona 
       ,"txt_nombre":txt_nombre 
@@ -223,4 +190,14 @@ function set_modificar_usuario(id_usuario,id_persona,){
           }
 
       }); 
+}
+
+function set_paginar_atraz(){
+  index_ultimo_registro-=limite_paginacion;
+  set_listado_filtrado(0);
+}
+
+function set_paginar_adelante(){
+  index_ultimo_registro+=limite_paginacion;
+   set_listado_filtrado(0);
 }

@@ -31,6 +31,10 @@ main{
     margin: 0.2rem;
 }
 
+#seccion_nuevo_usuario{
+    height: 100vh;
+}
+
 #seccion_nuevo_usuario,#seccion_listado_usuario{
     margin-top: 1rem;
     margin-left: 1rem;
@@ -46,12 +50,13 @@ main{
 
 .form_content{
     width: 90%;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
 #contadores{
     background-color: white;
     padding: 5rem;
+    width: 100%;
 }
 
 
@@ -59,17 +64,15 @@ main{
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 100%;
 }
 
 .contadores_content{
     display: grid;
-    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 1rem;
 }
 
 .contendor_contador{
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,17 +82,14 @@ main{
 
 .contendor_contador_1{
     background-color: aqua;
-    padding: 30%;
 }
 
 .contendor_contador_2{
     background-color: rgb(26, 203, 6);
-    padding: 30%;
 }
 
 .contendor_contador_3{
     background-color: rgb(94, 13, 201);
-    padding: 30%;
 }
 
 .contendor_contador:hover{
@@ -97,6 +97,16 @@ main{
     cursor: pointer;
     font-size:xx-large;
     background-size: cover;
+}
+
+#listado{
+    width: 100%;
+}
+
+.grid_2_rows{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
 }
 
 @media (max-width:1020px) {

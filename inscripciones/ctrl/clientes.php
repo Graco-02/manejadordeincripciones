@@ -20,7 +20,9 @@ if(count($_POST)>0){
          
         case 2:
             $id          = $_POST['id'];
-            get_lista($id);
+            $limite      = $_POST['limite'];
+            $cursor      = $_POST['cursor'];
+            get_lista($id,$limite,$cursor);
             break;  
         case 3:
             $id          = $_POST['id'];
@@ -83,7 +85,7 @@ function set_insertar_usuario($id_persona,$txt_user,$txt_clave){
 }
 
 
-function get_lista($id){
+function get_lista($id,$limite,$cursor){
     $conn = conectar();
       // Check connection
      if ($conn->connect_error) {
@@ -95,14 +97,14 @@ function get_lista($id){
         $sql = "SELECT usuarios.id as id,per.nombres as nombres,per.apellidos as apellidos,per.identificacion as identificacion,usuarios.username as username
                 FROM usuarios usuarios, persona per
                 WHERE usuarios.id = ".$id." AND usuarios.id_persona = per.id
-                order by usuarios.id asc;
-        "; 
+                order by usuarios.id asc
+                LIMIT ".$limite." OFFSET $cursor;"; 
      }else{
         $sql = "SELECT usuarios.id as id,per.nombres as nombres,per.apellidos as apellidos,per.identificacion as identificacion,usuarios.username as username
                 FROM usuarios usuarios, persona per
                 WHERE usuarios.id_persona = per.id
-                order by usuarios.id asc;
-        "; 
+                order by usuarios.id asc
+                LIMIT ".$limite." OFFSET $cursor;"; 
      }
   
       $result = $conn->query($sql);
