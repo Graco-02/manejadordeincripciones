@@ -23,12 +23,12 @@
             <img src="imagenes/loging2.png" alt="" class="img_loging">
             <form action="javascript:  get_validar_acceso();"  class="formulario">
                 <label for="txt_clave">Usuario</label>
-                <input type="text" name="txt_user" id="txt_user" placeholder="Usuario" maxlength="10" required class="form-control text_centrado pading_1 text_auto">
+                <input type="text" name="txt_user" id="txt_user" placeholder="Usuario" maxlength="10" required class="form-control text_centrado pading_1 ">
                 <label for="txt_clave">Clave</label>
-                <input type="password" name="txt_clave" id="txt_clave" placeholder="Clave" maxlength="20" required class="form-control text_centrado pading_1 text_auto">
+                <input type="password" name="txt_clave" id="txt_clave" placeholder="Clave" maxlength="20" required class="form-control text_centrado pading_1 ">
         
                 <br>
-                <input type="submit" value="Acceder"  class="btn btn-primary ancho_completo pading_1 text_auto">
+                <input type="submit" value="Acceder"  id="bt_acceder" class="btn btn-primary ancho_completo pading_1 ">
             </form>
         </section>
     </main>
