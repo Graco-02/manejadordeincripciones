@@ -19,80 +19,82 @@
     </script>
 </head>
 <body>
-    <main>
-        <section id="seccion_nuevo_usuario" class="flex_colum">
-            <form action="javascript:  set_agregar();"  class="formulario bg-white shadow-lg  rounded">
-                <input type="text" name="txt_nombre" id="txt_nombre" placeholder="Nombres" maxlength="100" required 
-                class="form-control form_content">
-                <input type="text" name="txt_apellido" id="txt_apellido" placeholder="Apellidos" maxlength="100" required 
-                class="form-control form_content">
-                <input type="text" name="txt_identificacion" id="txt_identificacion" placeholder="001-0000000-0"
+<main>
+    <section id="menu">
+         <ul id="menu_lista">
+            <div class="iten_menu_group">
+               <li class="iten_lista_menu">inscritos</li>   
+               <span class="input-group-text" id="basic-addon1">0</span>
+            </div>
+            <div class="iten_menu_group">
+               <li class="iten_lista_menu">pendientes</li>   
+               <span class="input-group-text" id="basic-addon1">0</span>
+            </div>
+            <div class="iten_menu_group">
+               <li class="iten_lista_menu">opcion3</li>   
+               <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+        </ul>
+    </section>
+
+    <section id="principal_content">
+        
+    <div id="contenedor_formulario">
+            <div id="contenedor_formulario_img_content">
+                <img src="../imagenes/usuario.png" alt="" srcset="" id="usuario_logo">
+                <br>
+                <input type="file" name="pic" id="pic" onchange="readURL(this.value)"/>
+            </div>
+            <form action="javascript:  set_agregar();"  class="shadow-lg  rounded formulario">
+                 <input type="text" name="txt_nombre" id="txt_nombre" placeholder="NOMBRES" maxlength="100" required 
+                 class="form-control form_content">
+                 <input type="text" name="txt_apellido" id="txt_apellido" placeholder="APELLIDOS" maxlength="100" required 
+                 class="form-control form_content">
+                <input type="text" name="txt_identificacion" id="txt_identificacion" placeholder="IDENTIFICACION"
                  class="form-control form_content" maxlength="13" minlength="13" onkeypress="completar_cedula();" required >
-                <label for="txt_direccion">Direccion</label>
-                <textarea name="txt_direccion" id="txt_direccion" maxlength="100" class="form-control form_content"></textarea>
-                <label for="txt_feccorte">fecha de corte</label>
-                <input type="date" name="txt_feccorte" id="txt_feccorte"  class="form-control form_content" required>
-                <label for="txt_cuota">monto</label>  
-                <input type="number" name="txt_cuota" id="txt_cuota" class="form-control form_content" required> 
+                 <label for="txt_direccion">Direccion</label>
+                 <textarea name="txt_direccion" id="txt_direccion" maxlength="100" class="form-control form_content"></textarea>
+                 <label for="txt_feccorte">fecha de corte</label>
+                 <input type="date" name="txt_feccorte" id="txt_feccorte"  class="form-control form_content" required>
+                 <label for="txt_cuota">monto</label>  
+                 <input type="number" name="txt_cuota" id="txt_cuota" class="form-control form_content" required> 
                 
-                <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content">
+                 <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content">
             </form>
-        </section>
+        </div>
 
-        <section id="seccion_listado_usuario">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                 <input type="text" class="form-control" placeholder="identificacion" aria-label="Username" aria-describedby="basic-addon1">
+        <div id="contenedor_tabla">
+            <div class="iten_menu_group2">
+               <img src="../imagenes/tab-search.png" alt="" srcset="" id="usuario_logo" class="icono">
+               <input type="text" name="txt_nombre" id="txt_nombre" placeholder="001-0000000-0" maxlength="100" required 
+               class="form-control">
             </div>
 
-
-            <div class="grid_2_rows">
-             <table id="listado" class="table  table-hover">
+            <table class=" table-hover tabla_datos table">
                 <thead>
-                  <tr>
-                    <th scope="col" hidden>#</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Identificacion</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody id="lista_usuarios">
-                   <script>
-                        set_listado_filtrado(0);
-                   </script>
-                </tbody>
-                <tfoot>
                     <tr>
-                        
-                        <td></td>
-                        <td><button class="btn btn-primary" onclick="set_paginar_atraz();"><<</button></td>
-                        <td></td>
-                        <td><button class="btn btn-primary" onclick="set_paginar_adelante();">>></button></td>
-                        <td></td>
-                        
+                        <th>nombres</th>
+                        <th>apellidos</th>
+                        <th>identificacion</th>
+                        <th>feccorte</th>
+                        <th>cuota</th>
+                        <th></th>
                     </tr>
-                </tfoot>
-             </table>
-             <div id="contadores" class="bg-white shadow-lg  rounded">
-                <section class="contadores_content">
-                    <div class="contendor_contador contendor_contador_1" onclick="alert('');">
-                        <span>INSCRIPTOS</span>
-                        <p id="cont_inscriptos">0</p>
-                    </div>
-                    <div class="contendor_contador contendor_contador_2" onclick="alert('');">
-                       <span>VENCIDOS</span>
-                       <p id="cont_nopagos">0</p>
-                    </div>
-                    <div class="contendor_contador contendor_contador_3" onclick="alert('');">
-                        <span>AL DIA</span>
-                        <p id="cont_pagos">0</p>
-                    </div>
-                </section>
+                </thead>
+                <tbody id="tabla_datos_cuerpo"></tbody>
+                <script>
+                    set_listado_filtrado();
+                </script>
+            </table>
+
+            <div id="control_paginacion">
+                <button class="rounded bt_paginacion" onclick="set_paginar_atraz();"><<</button>
+                <button class="rounded bt_paginacion" onclick="set_paginar_adelante();">>></button>
             </div>
-            </div>
-        </section>
-    </main>
+        </div>
+        
+    </section>
+
+</main>
 </body>
 </html>
