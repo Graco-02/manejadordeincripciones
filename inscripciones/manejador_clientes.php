@@ -25,14 +25,15 @@
             <div class="iten_menu_group">
                <li class="iten_lista_menu">inscritos</li>   
                <span class="input-group-text" id="basic-addon1">0</span>
+               <script> </script>
             </div>
             <div class="iten_menu_group">
                <li class="iten_lista_menu">pendientes</li>   
-               <span class="input-group-text" id="basic-addon1">0</span>
+               <span class="input-group-text" id="basic-addon2">0</span>
             </div>
             <div class="iten_menu_group">
                <li class="iten_lista_menu">opcion3</li>   
-               <span class="input-group-text" id="basic-addon1">@</span>
+               <span class="input-group-text" id="basic-addon3">@</span>
             </div>
         </ul>
     </section>
@@ -56,9 +57,19 @@
                  <textarea name="txt_direccion" id="txt_direccion" maxlength="100" class="form-control form_content"></textarea>
                  <label for="txt_feccorte">fecha de corte</label>
                  <input type="date" name="txt_feccorte" id="txt_feccorte"  class="form-control form_content" required>
-                 <label for="txt_cuota">monto</label>  
-                 <input type="number" name="txt_cuota" id="txt_cuota" class="form-control form_content" required> 
-                
+                 
+                 <div class="grid_comulns_2">
+                    <div>
+                        <label for="txt_cuota">cuota</label>  
+                         <input type="number" name="txt_cuota" id="txt_cuota" class="form-control form_content" value="0" required> 
+                    </div>
+                    <div>
+                        <label for="txt_saldo">saldo</label>  
+                         <input type="number" name="txt_cuota" id="txt_saldo" class="form-control form_content" value="0"> 
+                    </div>
+                 </div>
+
+                <br>
                  <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content">
             </form>
         </div>
@@ -66,7 +77,7 @@
         <div id="contenedor_tabla">
             <div class="iten_menu_group2">
                <img src="../imagenes/tab-search.png" alt="" srcset="" id="usuario_logo" class="icono">
-               <input type="text" name="txt_nombre" id="txt_nombre" placeholder="001-0000000-0" maxlength="100" required 
+               <input type="text" name="txt_buscar" id="txt_buscar" placeholder="Buscar" maxlength="100" onkeypress="set_listado_filtrado();" 
                class="form-control">
             </div>
 
@@ -97,4 +108,5 @@
 
 </main>
 </body>
+<script>get_total_inscriptos(); get_clientes_corte_vencido(); </script>
 </html>

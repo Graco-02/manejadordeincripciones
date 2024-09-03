@@ -124,6 +124,17 @@ main{
 }
 
 
+.form_content{
+    text-align: center;
+    font-weight: 0;
+    text-transform: uppercase;
+}
+
+.grid_comulns_2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 @media (max-width:1020px) {
     main{
         display: flex;
