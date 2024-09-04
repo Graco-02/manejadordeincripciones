@@ -47,30 +47,50 @@
                 <input type="file" name="pic" id="pic" onchange="readURL(this.value)"/>
             </div>
             <form action="javascript:  set_agregar();"  class="shadow-lg  rounded formulario">
-                 <input type="text" name="txt_nombre" id="txt_nombre" placeholder="NOMBRES" maxlength="100" required 
-                 class="form-control form_content">
+
+                 <div class="grid_comulns_2">
+                    <label for="txt_nombre">Nombres</label>
+                    <input type="text" name="txt_nombre" id="txt_nombre" placeholder="NOMBRES" maxlength="100" required 
+                    class="input_text form-control form_content ">
+                 </div>
+
+                 <div class="grid_comulns_2">
+                 <label for="txt_apellido">Apellidos</label>
                  <input type="text" name="txt_apellido" id="txt_apellido" placeholder="APELLIDOS" maxlength="100" required 
-                 class="form-control form_content">
-                <input type="text" name="txt_identificacion" id="txt_identificacion" placeholder="IDENTIFICACION"
-                 class="form-control form_content" maxlength="13" minlength="13" onkeypress="completar_cedula();" required >
+                 class="form-control form_content input_text">
+                 </div>
+
+                 <div class="grid_comulns_2">
+                 <label for="txt_identificacion">Identificacion</label>
+                 <input type="text" name="txt_identificacion" id="txt_identificacion" placeholder="IDENTIFICACION"
+                 class="form-control form_content input_text" maxlength="13" minlength="13" onkeypress="completar_cedula();" required >
+                 </div>
+
                  <label for="txt_direccion">Direccion</label>
-                 <textarea name="txt_direccion" id="txt_direccion" maxlength="100" class="form-control form_content"></textarea>
+                 <textarea name="txt_direccion" id="txt_direccion" maxlength="100" class="form-control form_content input_text"></textarea>
+
+                 <div class="grid_comulns_2">
                  <label for="txt_feccorte">fecha de corte</label>
-                 <input type="date" name="txt_feccorte" id="txt_feccorte"  class="form-control form_content" required>
-                 
+                 <input type="date" name="txt_feccorte" id="txt_feccorte"  class="form-control form_content input_text" required>
+                 </div>
+
                  <div class="grid_comulns_2">
                     <div>
                         <label for="txt_cuota">cuota</label>  
-                         <input type="number" name="txt_cuota" id="txt_cuota" class="form-control form_content" value="0" required> 
+                         <input type="number" name="txt_cuota" id="txt_cuota" class="form-control form_content input_text" value="0" required> 
                     </div>
                     <div>
                         <label for="txt_saldo">saldo</label>  
-                         <input type="number" name="txt_cuota" id="txt_saldo" class="form-control form_content" value="0"> 
+                         <input type="number" name="txt_cuota" id="txt_saldo" class="form-control form_content input_text" value="0"> 
                     </div>
                  </div>
 
                 <br>
-                 <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content">
+
+                 <div class="grid_comulns_2">
+                     <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content">
+                     <input value="pagar"  class="btn btn-primary form_content" id="bt_pagar" onclick="alert('pagando')">
+                 </div>
             </form>
         </div>
 
