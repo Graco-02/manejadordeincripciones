@@ -101,8 +101,9 @@
                class="form-control">
             </div>
 
+            <div class="table-responsive">
             <table class=" table-hover tabla_datos table">
-                <thead>
+                <thead class="table-light">
                     <tr>
                         <th>nombres</th>
                         <th>apellidos</th>
@@ -117,7 +118,7 @@
                     set_listado_filtrado();
                 </script>
             </table>
-
+            </div>
             <div id="control_paginacion">
                 <button class="rounded bt_paginacion" onclick="set_paginar_atraz();"><<</button>
                 <button class="rounded bt_paginacion" onclick="set_paginar_adelante();">>></button>
