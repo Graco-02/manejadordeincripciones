@@ -7,6 +7,7 @@ let fichero_seleccionado ="" ;
 var objectURL_aux="";
 var total_inscriptos=0;
 var lista_clientes_vencidos;
+var cliente_selecionado;
 
 function completar_cedula(){
     var cedula = document.getElementById("txt_identificacion")
@@ -207,9 +208,10 @@ function get_cliente(id_persona){
       ,function(respuesta){
           try {
             var json = $.parseJSON(respuesta);
-           // console.log(json);//muestro en consola
+            //console.log(json);//muestro en consola
             //llamo al metodo para cargar los datos del cliente seleccionado
-            set_cargar_datos_cliente_seleccionado(json);
+            cliente_selecionado=json;
+            set_cargar_datos_cliente_seleccionado(cliente_selecionado);
           } catch (error) {
               console.log(error);
               console.log(respuesta);
@@ -245,26 +247,28 @@ function set_eliminar(){
 
 function set_cargar_datos_cliente_seleccionado(json){
   $imagenPrevisualizacion = document.querySelector("#usuario_logo");
-  id_persona_seleccionado=json[6]; 
+  id_persona_seleccionado=cliente_selecionado[6]; 
 
-  document.getElementById("txt_nombre").value          = json[0]; 
-  document.getElementById("txt_apellido").value        = json[1]; 
-  document.getElementById("txt_identificacion").value  = json[2]; 
-  document.getElementById("txt_direccion").value       = json[3]; 
-  document.getElementById("txt_feccorte").value        = json[4]; 
-  document.getElementById("txt_cuota").value           = json[5]; 
-  document.getElementById("txt_saldo").value           = json[8]; 
+  document.getElementById("txt_nombre").value          = cliente_selecionado[0]; 
+  document.getElementById("txt_apellido").value        = cliente_selecionado[1]; 
+  document.getElementById("txt_identificacion").value  = cliente_selecionado[2]; 
+  document.getElementById("txt_direccion").value       = cliente_selecionado[3]; 
+  document.getElementById("txt_feccorte").value        = cliente_selecionado[4]; 
+  document.getElementById("txt_cuota").value           = cliente_selecionado[5]; 
 
   if(json[7].length>0){
     //cargo la imagen desde bbdd
-    $imagenPrevisualizacion.src =  "../imagenes_subidas/"+json[7];
-    objectURL_aux=json[7];
-    fichero_seleccionado=json[7];
-}else{
-    $imagenPrevisualizacion.src =  "../imagenes/usuario.png";
-    objectURL_aux=json[7];
-    fichero_seleccionado=json[7];
-}
+    $imagenPrevisualizacion.src =  "../imagenes_subidas/"+cliente_selecionado[7];
+    objectURL_aux=cliente_selecionado[7];
+    fichero_seleccionado=cliente_selecionado[7];
+  }else{
+      $imagenPrevisualizacion.src =  "../imagenes/usuario.png";
+      objectURL_aux=cliente_selecionado[7];
+      fichero_seleccionado=cliente_selecionado[7];
+  }
+
+  get_monto_pagado_desde();
+ // console.log(cliente_selecionado[8]);//muestro en consola
 }
 
 
@@ -305,4 +309,101 @@ function get_clientes_corte_vencido(){
             console.log(respuesta);
         }
       }); 
+}
+
+function get_ventana_pago(){
+  if(id_persona_seleccionado>0){
+     document.getElementById("seccion_pago").classList.toggle("cerrado");
+     document.getElementById("txt_monto_atrazo").value    = cliente_selecionado[8]; 
+
+     if(cliente_selecionado[8]>0){
+      document.getElementById("txt_dias_atrazo").value     = cliente_selecionado[9]; 
+     }else{
+      document.getElementById("txt_dias_atrazo").value     = 0; 
+     }
+  }else{
+    alert("debe seleccionar un cliente primero");
+  }
+}
+
+function set_cerrar_pago(){
+  document.getElementById("seccion_pago").classList.toggle("cerrado");
+}
+
+
+function set_realizar_pago(){
+  var monto_a_pagar =  document.getElementById("txt_monto_pago").value; 
+  let monto_adeudado = cliente_selecionado[8];
+  let fecha_corte    = cliente_selecionado[4]; 
+
+  var comentario_pago = document.getElementById("txt_comentario_pago").value; 
+
+  try{
+    if(monto_a_pagar<=0){
+        alert("debe informar un monto mayor que cero"); 
+    }else{
+      var accion = 1;//opcion para seleccionar los datos del equipo
+        $.post("../pagos/ctrl/pagos.php"
+          ,{"id_usuario":id_usuario_logueado 
+          ,"id_persona":cliente_selecionado[10] 
+          ,"monto_a_pagar":monto_a_pagar 
+          ,"monto_adeudado":monto_adeudado 
+          ,"fecha_corte":fecha_corte 
+          ,"comentario_pago":comentario_pago 
+          ,"accion":accion 
+          }
+          ,function(respuesta){
+            try {
+              console.log(respuesta);//muestro en consola
+              set_limpiar_campos();
+              set_cerrar_pago();
+            } catch (error) {
+                console.log(error);
+                console.log(respuesta);
+            }
+          }); 
+    }
+  } catch (error) {
+    console.log(error);
+  }  
+}
+
+
+function set_limpiar_campos(){
+  document.getElementById("txt_nombre").value          = ''; 
+  document.getElementById("txt_apellido").value        = ''; 
+  document.getElementById("txt_identificacion").value  = ''; 
+  document.getElementById("txt_direccion").value       = ''; 
+  document.getElementById("txt_feccorte").value        = ''; 
+  document.getElementById("txt_cuota").value           = 0; 
+  document.getElementById("txt_saldo").value           = 0; 
+  id_persona_seleccionado=0;
+}
+
+
+function get_monto_pagado_desde(){
+  //var saldo = document.getElementById("txt_saldo"); 
+  let monto_adeudado = cliente_selecionado[8];
+  let fecha_corte    = cliente_selecionado[4]; 
+  try{
+      var accion = 2;//opcion para seleccionar los datos del equipo
+        $.post("../pagos/ctrl/pagos.php"
+          ,{"id_persona":cliente_selecionado[10] 
+          ,"fecha_corte":fecha_corte 
+          ,"accion":accion 
+          }
+          ,function(respuesta){
+            try {
+              //console.log(cliente_selecionado[8]);//muestro en consola
+            
+              cliente_selecionado[8] = (monto_adeudado - respuesta);
+              document.getElementById("txt_saldo").value   = cliente_selecionado[8]; 
+            } catch (error) {
+                console.log(error);
+                console.log(respuesta);
+            }
+          }); 
+  } catch (error) {
+    console.log(error);
+  }  
 }

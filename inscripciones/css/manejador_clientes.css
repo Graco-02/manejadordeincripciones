@@ -18,6 +18,7 @@ main{
     display: grid;
     grid-template-columns: 0.5fr 2fr;
     gap: 0.5rem;
+    position: relative;
 }
 
 #menu{
@@ -156,6 +157,36 @@ main{
     background-color: blue;
 }
 
+
+.abierto{
+    display: block;
+}
+
+.cerrado{
+    display: none;
+}
+
+.formulario_pago{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 40%;
+    background-color: rgba(245, 234, 234, 0.928);
+    padding: 5rem;
+}
+
+.formulario_pago_conten{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.bt_withe{
+    color: white;
+}
+
+
 @media (max-width:1020px) {
     main{
         display: flex;
@@ -195,5 +226,9 @@ main{
 
     #eliminar{
         display: none;
+    }
+
+    .formulario_pago{
+        width: 90%;
     }
  }

@@ -40,7 +40,7 @@
 
     <section id="principal_content">
         
-    <div id="contenedor_formulario">
+        <div id="contenedor_formulario">
             <div id="contenedor_formulario_img_content">
                 <img src="../imagenes/usuario.png" alt="" srcset="" id="usuario_logo">
                 <br>
@@ -81,15 +81,15 @@
                     </div>
                     <div>
                         <label for="txt_saldo">saldo</label>  
-                         <input type="number" name="txt_cuota" id="txt_saldo" class="form-control form_content input_text" value="0"> 
+                         <input type="number" name="txt_saldo" id="txt_saldo" class="form-control form_content input_text" value="0"> 
                     </div>
                  </div>
 
                 <br>
 
                  <div class="grid_comulns_2">
-                     <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content">
-                     <input value="pagar"  class="btn btn-primary form_content" id="bt_pagar" onclick="alert('pagando')">
+                     <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content bt_withe">
+                     <input value="pagar"  class="btn btn-primary form_content bt_withe" id="bt_pagar" onclick="get_ventana_pago();">
                  </div>
             </form>
         </div>
@@ -124,6 +124,36 @@
             </div>
         </div>
         
+    </section>
+
+    <section class="cerrado rounded formulario_pago" id="seccion_pago"> 
+        <form action="javascript: set_realizar_pago();"  class="formulario_pago_conten">
+                <div class="grid_comulns_2">
+                    <label for="txt_dias_atrazo">Dias en Atrazo</label>
+                    <input type="number" name="txt_dias_atrazo" id="txt_dias_atrazo" placeholder="0" maxlength="100" readonly 
+                    class="input_text form-control form_content ">
+                </div>
+                <div class="grid_comulns_2">
+                    <label for="txt_monto_atrazo">Monto en Atrazo</label>
+                    <input type="number" name="txt_monto_atrazo" id="txt_monto_atrazo" placeholder="0" maxlength="100" readonly 
+                    class="input_text form-control form_content ">
+                </div>
+                <div class="grid_comulns_2">
+                    <label for="txt_monto_pago">Monto del pago</label>
+                    <input type="number" name="txt_monto_pago" id="txt_monto_pago" placeholder="0" maxlength="100" required 
+                    class="input_text form-control form_content ">
+                </div>
+                <div class="grid_comulns_2">
+                    <label for="txt_comentario_pago">Cometarios</label>
+                    <textarea name="txt_comentario_pago" id="txt_comentario_pago" maxlength="100" class="form-control form_content input_text"></textarea>
+                </div>
+                <br>
+                <br>
+                <div class="grid_comulns_2">
+                <input type="submit" value="Pagar"  class="btn btn-primary form_conten bt_withe">
+                <input  value="cerrar"  class="btn btn-primary form_content bt_withe" onclick="set_cerrar_pago();">
+                </div>
+        </form>
     </section>
 
 </main>

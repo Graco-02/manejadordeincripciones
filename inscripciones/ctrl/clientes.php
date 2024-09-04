@@ -150,9 +150,9 @@ function get_lista($id,$limite,$cursor,$criterio){
 
       $sql = "SELECT p.id as id,p.nombres as nombres,p.apellidos as apellidos,
       p.identificacion as identificacion,p.direccion as direccion,
-      c.feccorte as feccorte, c.cuota as cuota, p.foto_url as  foto_url, conf.periodisidad
+      c.feccorte as feccorte, c.cuota as cuota, p.foto_url as  foto_url, conf.periodisidad, c.id as id_cliente
       FROM persona p, clientes c , configuraciones conf
-      WHERE p.id = c.id_persona and c.id_usuario=$id_usuario and p.id =$id_cliente"; 
+      WHERE p.id = c.id_persona and c.id_usuario=$id_usuario and p.id =$id_cliente and conf.id_usuario=$id_usuario"; 
 
     $result = $conn->query($sql);
     $count=1;     
@@ -168,8 +168,7 @@ function get_lista($id,$limite,$cursor,$criterio){
        array_push($ocurrancia,$row["cuota"]);
        array_push($ocurrancia,$row["id"]);
        array_push($ocurrancia,$row["foto_url"]);
-
-
+       
        $diff = strtotime($row["feccorte"]) - strtotime($date);
        $dias_aux = $diff/(60*60*24);
        $dias = $diff/(60*60*24);
@@ -185,6 +184,8 @@ function get_lista($id,$limite,$cursor,$criterio){
         array_push($ocurrancia, 0);//monto en atrazo
        }
 
+       array_push($ocurrancia,$dias);//dias en atrazo
+       array_push($ocurrancia,$row["id_cliente"]);
        echo json_encode($ocurrancia);
      }	 
     }
