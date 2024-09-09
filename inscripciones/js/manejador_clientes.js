@@ -345,7 +345,7 @@ function set_realizar_pago(){
       var accion = 1;//opcion para seleccionar los datos del equipo
         $.post("../pagos/ctrl/pagos.php"
           ,{"id_usuario":id_usuario_logueado 
-          ,"id_persona":cliente_selecionado[10] 
+          ,"id_persona":cliente_selecionado[10] //envio el id del cliente
           ,"monto_a_pagar":monto_a_pagar 
           ,"monto_adeudado":monto_adeudado 
           ,"fecha_corte":fecha_corte 
@@ -354,9 +354,13 @@ function set_realizar_pago(){
           }
           ,function(respuesta){
             try {
-              console.log(respuesta);//muestro en consola
+             // console.log(respuesta);//muestro en consola
               set_limpiar_campos();
               set_cerrar_pago();
+              get_clientes_corte_vencido();
+              if(respuesta=="CORRECTO"){
+                  alert("Pago Recivido Gracias!!!");
+              }
             } catch (error) {
                 console.log(error);
                 console.log(respuesta);

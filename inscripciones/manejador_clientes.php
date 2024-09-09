@@ -32,8 +32,8 @@
                <span class="input-group-text" id="basic-addon2">0</span>
             </div>
             <div class="iten_menu_group">
-               <li class="iten_lista_menu">opcion3</li>   
-               <span class="input-group-text" id="basic-addon3">@</span>
+               <li class="iten_lista_menu"><a href="../pagos/pagos.php" >Historico de Pagos</a></li>   
+               <!--<span class="input-group-text" id="basic-addon3">@</span>-->
             </div>
         </ul>
     </section>
@@ -47,7 +47,7 @@
                 <input type="file" name="pic" id="pic" onchange="readURL(this.value)"/>
             </div>
             <form action="javascript:  set_agregar();"  class="shadow-lg  rounded formulario">
-
+                <br>
                  <div class="grid_comulns_2">
                     <label for="txt_nombre">Nombres</label>
                     <input type="text" name="txt_nombre" id="txt_nombre" placeholder="NOMBRES" maxlength="100" required 
@@ -91,6 +91,7 @@
                      <input type="submit" value="Agregar/Modificar"  class="btn btn-primary form_content bt_withe">
                      <input value="pagar"  class="btn btn-primary form_content bt_withe" id="bt_pagar" onclick="get_ventana_pago();">
                  </div>
+                 <br>
             </form>
         </div>
 

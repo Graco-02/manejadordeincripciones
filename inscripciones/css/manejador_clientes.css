@@ -55,6 +55,11 @@ main{
     text-align: center;
 }
 
+.iten_menu_group a{
+    text-decoration: none;
+    color: black;
+}
+
 #contenedor_formulario{
     display: grid;
     grid-template-columns: 0.5fr 1.5fr;

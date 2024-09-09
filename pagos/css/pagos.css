@@ -1,0 +1,135 @@
+:root{
+    --color_primario:rgb(218, 215, 244);
+    --color_menu:rgb(100, 84, 242);
+    --color_cabecera_1:rgb(17, 177, 236);
+    --color_cabecera_2:rgb(6, 186, 78);
+    --color_cabecera_3:rgb(155, 174, 13);
+    --color_wite:rgb(255, 255, 255);
+    --color_primario2:rgb(143, 143, 146);
+}
+
+body{
+    position: relative;
+    background-color:var(--color_primario);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    gap: 0.5rem;
+    position: relative;
+}
+
+#menu{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color_wite);
+    margin:0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+}
+
+#menu_lista{
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.iten_menu_group{
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.iten_menu_group span{
+    text-align: center;
+}
+
+.iten_menu_group a{
+    text-decoration: none;
+    color: black;
+}
+
+#principal_content{
+    margin:0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#contenedor_formulario{
+    background-color: white;
+}
+
+.iten_menu_group2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iten_menu_group3{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.icono{
+    width: 2.5rem;
+}
+
+.botones{
+    background-color: blue;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.botones:hover{
+    background-color: var(--color_cabecera_1);
+}
+
+#tabla{
+    background-color: white;
+    text-transform: uppercase;
+}
+
+#control_paginacion{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bt_paginacion{
+    background-color: var(--color_cabecera_1);
+    cursor: pointer;
+}
+
+.bt_paginacion:hover{
+    background-color: var(--color_cabecera_2);
+}
+
+@media (max-width:1020px) {
+    main{
+        display: flex;
+        flex-direction: column;
+    }    
+
+    #menu{
+        display: none;
+    }
+
+ }
