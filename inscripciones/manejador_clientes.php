@@ -103,7 +103,7 @@
 
             <div class="table-responsive">
             <table class=" table-hover tabla_datos table">
-                <thead class="table-light">
+                <thead class="table-light cabecera_tabla">
                     <tr>
                         <th>nombres</th>
                         <th>apellidos</th>
