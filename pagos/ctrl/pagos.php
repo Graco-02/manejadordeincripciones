@@ -22,8 +22,18 @@ if(count($_POST)>0){
                 $fecha_ini                 = $_POST["fecha_corte" ];
                 get_monto_pagado_luego_de_fecha_dada($id_cliente,$fecha_ini);
                 break;
+        case 3:
+            //lista de pagos
+                $criterio             = $_POST["criterio"];
+                $fecha_ini            = $_POST["fecha_ini" ];
+                $fecha_fin            = $_POST["fecha_fin"];    
+                $limite               = $_POST["limite"];    
+                $cursor               = $_POST["cursor"];    
+                $id_usuario_logueado  = $_POST["id"];    
+                get_lista($limite,$cursor,$criterio, $fecha_ini , $fecha_fin,$id_usuario_logueado );
+                break;                
         default:
-            # code...
+
             break;
     }    
 }
@@ -132,5 +142,47 @@ function get_monto_pagado_luego_de_fecha_dada($id_cliente,$fecha_ini){
       $conn->close();	
 }
 
+function get_lista($limite,$cursor,$criterio, $fecha_ini , $fecha_fin,$id_usuario_logueado ){
+    $conn = conectar();
+      // Check connection
+     if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+     }
+ 
+  
+     $sql = "SELECT CONCAT(p.nombres,' ',p.apellidos) as cli_nombre,
+             p.identificacion as cli_identificacion,
+             pg.monto as cli_pago,
+             pg.fecalta as cli_fecha ,
+             pg.comentario as cli_comentario,
+             pg.id_cliente as cli_pg_id
+             FROM persona p, clientes c, pagos pg
+             WHERE 
+             c.id_usuario = $id_usuario_logueado
+             AND pg.id_cliente = c.id
+             AND (pg.fecalta >= '".$fecha_ini."' and pg.fecalta <= '".$fecha_fin."')
+             AND p.id = c.id_persona
+             AND (p.nombres LIKE '%".$criterio."%' OR p.apellidos like '%".$criterio."%' or p.identificacion like '%".$criterio."%')"
+             ." LIMIT ".$limite." OFFSET $cursor"; 
 
+      $result = $conn->query($sql);
+      $count=1;   
+      $lista_total = array();        
+      if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc() ) {
+          
+         $ocurrancia = array();    
+         array_push($ocurrancia,$row["cli_fecha"]);
+         array_push($ocurrancia,$row["cli_nombre"]);
+         array_push($ocurrancia,$row["cli_identificacion"]);
+         array_push($ocurrancia,$row["cli_pago"]);
+         array_push($ocurrancia,$row["cli_comentario"]);
+         array_push($ocurrancia,$row["cli_pg_id"]);
+         array_push($lista_total,$ocurrancia);
+       }	 
+       echo json_encode($lista_total);
+      }
+
+      $conn->close();	
+ }
 ?>
