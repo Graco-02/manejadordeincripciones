@@ -22,6 +22,7 @@ function set_agregar(){
   console.log("objectURL_aux = "+objectURL_aux);
   if(objectURL_aux.length >0){
     set_subir_imagen();
+    set_insertar_datos();
   }else{
     set_insertar_datos();
   }
@@ -410,4 +411,61 @@ function get_monto_pagado_desde(){
   } catch (error) {
     console.log(error);
   }  
+}
+
+function set_toogle_config(){
+  document.getElementById("seccion_configuracion").classList.toggle("cerrado");
+}
+
+function get_parametros(){
+  var accion = 0;//opcion para seleccionar los datos del equipo
+  //console.log("         get_total_inscriptos();");
+    $.post("../ctrl/configuracion.php"
+      ,{"id_user":id_usuario_logueado 
+      ,"accion":accion 
+      }
+      ,function(respuesta){
+        try {
+          var json = $.parseJSON(respuesta);
+        //  console.log(json);//muestro en consola
+          document.getElementById('periodo_select').value=json[0][0];
+          document.getElementById('cfg_feccorte').value=json[0][1];
+          document.getElementById('cfg_cuota').value=json[0][2];
+
+          //datos del alta
+          document.getElementById('txt_feccorte').value=json[0][1];
+          document.getElementById('txt_cuota').value=json[0][2];
+        } catch (error) {
+            console.log(error);
+            console.log(respuesta);
+        }
+      }); 
+}
+
+function set_parametros(){
+  var accion = 1;//opcion para seleccionar los datos del equipo
+
+  var periodo_select = document.getElementById('periodo_select').value;
+  var cfg_feccorte = document.getElementById('cfg_feccorte').value;
+  var cfg_cuota = document.getElementById('cfg_cuota').value;
+
+  //console.log("         get_total_inscriptos();");
+    $.post("../ctrl/configuracion.php"
+      ,{"id_user":id_usuario_logueado 
+      ,"accion":accion 
+      ,"periodo_select":periodo_select 
+      ,"cfg_feccorte":cfg_feccorte 
+      ,"cfg_cuota":cfg_cuota 
+      }
+      ,function(respuesta){
+        try {
+         // var json = $.parseJSON(respuesta);
+          //console.log(json);//muestro en consola
+         alert('ACTUALIZADO!!')
+         
+        } catch (error) {
+            console.log(error);
+            console.log(respuesta);
+        }
+      }); 
 }

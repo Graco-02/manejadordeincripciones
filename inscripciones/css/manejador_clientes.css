@@ -192,6 +192,21 @@ main{
 }
 
 
+
+.table thead{
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.table tbody td{
+    font-weight: 0;
+    font-size: 1rem;
+}
+
+.table thead th{ 
+    color: blue;
+}
+
 @media (max-width:1020px) {
     main{
         display: flex;

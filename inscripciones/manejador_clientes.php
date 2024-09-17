@@ -35,6 +35,11 @@
                <li class="iten_lista_menu"><a href="../pagos/pagos.php" >Historico de Pagos</a></li>   
                <!--<span class="input-group-text" id="basic-addon3">@</span>-->
             </div>
+
+            <div class="iten_menu_group">
+               <li class="iten_lista_menu" onclick="set_toogle_config();">Configuracion</li>   
+               <!--<span class="input-group-text" id="basic-addon3">@</span>-->
+            </div>
         </ul>
     </section>
 
@@ -158,7 +163,40 @@
         </form>
     </section>
 
+
+    <section class="cerrado rounded formulario_pago" id="seccion_configuracion"> 
+        <form action="javascript: set_parametros();"  class="formulario_pago_conten">
+                <div class="grid_comulns_2">
+                    <label for="periodo_select">Perido</label>
+                    <select name="periodo" id="periodo_select" class="input_text form-control form_content ">
+                        <option value="1">DIARIO</option>
+                        <option value="7">SEMANAL</option>
+                        <option value="15">QUINCENAL</option>
+                        <option value="30">MENSUAL</option>
+                    </select>
+                </div>
+
+                <div class="grid_comulns_2">
+                 <label for="cfg_feccorte">fecha de corte</label>
+                 <input type="date" name="cfg_feccorte" id="cfg_feccorte"  class="form-control form_content input_text" required>
+                </div>
+
+                <div class="grid_comulns_2">
+                    <label for="txt_cuota">cuota</label>  
+                    <input type="number" name="cfg_cuota" id="cfg_cuota" class="form-control form_content input_text" value="0" required> 
+                </div>
+
+                <br>
+                <br>
+
+                <div class="grid_comulns_2">
+                <input type="submit" value="Guardar"  class="btn btn-primary form_conten bt_withe">
+                <input  value="cerrar"  class="btn btn-primary form_content bt_withe" onclick="set_toogle_config();">
+                </div>
+        </form>
+    </section>
+
 </main>
 </body>
-<script>get_total_inscriptos(); get_clientes_corte_vencido(); </script>
+<script>get_total_inscriptos(); get_clientes_corte_vencido(); get_parametros(); </script>
 </html>
